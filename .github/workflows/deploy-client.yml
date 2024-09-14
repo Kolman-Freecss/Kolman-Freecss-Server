@@ -1,0 +1,54 @@
+name: deploy-client
+
+on:
+  workflow_dispatch:
+    inputs: 
+        why-deploy:
+            description: 'Why do you want to deploy?'
+            required: true
+            default: 'I want to deploy because...'
+  push:
+    branches:
+      - master
+    paths:
+      - 'client/**'
+      
+permissions: 
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
+      - name: Install and build
+        run: |
+          cd client
+          npm install
+          npm run build
+          
+      - name: Deploy
+        env:
+          GITMAIL: ${{ secrets.GITMAIL }}
+        run: |
+          cd client
+          echo "Configuring git..."
+          echo "Deploying in mail $GITMAIL"
+          git config --global user.email $GITMAIL
+          git config --global user.name Kolman-Freecss
+          echo "Git configured"
+          echo "Configuring token..."
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Kolman-Freecss/Kolman-Freecss-About.git
+          echo "Token configured"
+          npm run ng deploy -- --no-silent
+        
