@@ -72,6 +72,8 @@ Check the `server` folder.
 
 ## Troubleshoting
 
+- Connect Kafka between Docker local containers.
+  - Check `KAFKA_ADVERTISED_LISTENERS` in the `docker-compose.yml` file that matches with `host.docker.internal` (This is only for local purposes because you need 'host.docker.internal' in bootstrap-server Kafka connection).
 
 ---
 
