@@ -1,14 +1,15 @@
 package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto;
 
-public record KafkaMessage() {
-    private static String id;
-    private static String message;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@AllArgsConstructor
+@ToString(of = {"id", "message"})
+public class KafkaMessage {
     
-    public String getId() {
-        return id;
-    }
+    private final String id;
+    private final String message;
     
-    public String getMessage() {
-        return message;
-    }
 }
