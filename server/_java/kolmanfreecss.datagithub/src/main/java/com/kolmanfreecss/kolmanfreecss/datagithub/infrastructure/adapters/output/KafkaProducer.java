@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @Component
@@ -17,13 +18,20 @@ public class KafkaProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendFlightEvent(final KafkaMessage event) {
+    public Mono<Void> sendFlightEvent(final KafkaMessage event) {
         try {
             final String jsonEvent = new ObjectMapper().writeValueAsString(event);
-            kafkaTemplate.send(TOPIC, event.getId(), jsonEvent);
             log.info("Producer produced the message {}", jsonEvent);
+            return Mono.fromFuture(() -> kafkaTemplate.send(TOPIC, jsonEvent).whenComplete((recordMetadata, exception) -> {
+                if (exception != null) {
+                    log.error("Error while producing the message", exception);
+                } else {
+                    log.info("Message produced successfully");
+                }
+            })).then();
         } catch (JsonProcessingException e) {
             log.error("Error while producing the message", e);
+            return Mono.error(e);
         }
         // write your handlers and post-processing logic, based on your use case
     }

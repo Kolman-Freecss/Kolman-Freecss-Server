@@ -22,11 +22,19 @@ How to run the project:
 - Java 22
 - Springboot 3
 - Spring Data JDBC
+  - Way to interact with the database without the need of an ORM. Performance is better than JPA Hibernate.
 - Spring Data JPA Hibernate
+  - Way to interact with the database using an ORM (Hibernate) with all the entities and relationships configured.
 - Spring Batch
+  - Batch processing.
 - Spring Actuator
+  - You can check the health of the application in the following URL: `http://localhost:8080/actuator` or just `http://localhost:8080/actuator/health`
 - Springboot Webflux
+  - Reactive programming. Async API to perform non-blocking operations in the main thread application.
 - Spring Config
+  - Centralized configuration.
+- Spring Data Redis (instead of Caffeine)
+  - To cache data.
 
 #### DDBB:
 
@@ -35,6 +43,7 @@ How to run the project:
 #### Streaming server:
 
 - Kafka
+  - To stream data between microservices (Producer/Consumer).
 
 ### CI/CD
 
@@ -43,6 +52,9 @@ How to run the project:
 ## Architecture
 
 - Microservices.
+  - There are (actually) 2 microservices connected to the same Kafka broker.
+    - (This) Java microservice (DataGithub).
+    - Python & FastAPI microservice (Monitorization).
 - Hexagonal. 
 
 Check the `server` folder.
