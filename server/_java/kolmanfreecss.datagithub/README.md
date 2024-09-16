@@ -35,6 +35,10 @@ How to run the project:
   - Centralized configuration.
 - Spring Data Redis (instead of Caffeine)
   - To cache data.
+- SpringBoot Config Processor
+  - To generate the configuration file. (Its a helper to generate the configuration file).
+- SpringBoot DevTools
+  - To reload the application when a change is detected.
 
 #### DDBB:
 
