@@ -1,6 +1,7 @@
 package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.rest;
 
 import com.kolmanfreecss.kolmanfreecss.datagithub.application.service.GeneralGithubDataService;
+import com.kolmanfreecss.kolmanfreecss.datagithub.domain.dto.GithubDataDto;
 import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto.KafkaMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,10 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
+/**
+ * @author Kolman-Freecss
+ * @version 1.0
+ */
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/github")
@@ -19,20 +24,8 @@ public class GeneralGithubDataController {
         this.generalGithubDataService = generalGithubDataService;
     }
     
-    @GetMapping("/user/{userId}")
-    public Mono<String> findUserById(final @PathVariable String userId) {
-        try {
-            return generalGithubDataService.findUserById(userId)
-                    .map(userDto -> "User found: " + userDto.name())
-                    .defaultIfEmpty("User not found");
-        } catch (Exception e) {
-            log.error("Error finding user", e);
-            return Mono.just("Error finding user");
-        }
-    }
-
     @PostMapping("/send")
-    public Mono<String> sendGithubData(final @RequestBody List<KafkaMessage> githubData) {
+    public Mono<String> sendGithubData(final @RequestBody List<GithubDataDto> githubData) {
         try {
             return generalGithubDataService.sendGithubData(githubData)
                     .thenReturn("Github data sent successfully")

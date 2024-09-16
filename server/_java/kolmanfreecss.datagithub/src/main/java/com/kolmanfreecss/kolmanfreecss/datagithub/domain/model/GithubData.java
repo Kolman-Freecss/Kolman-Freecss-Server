@@ -15,8 +15,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "app_user")
-public class User {
+@Table
+public class GithubData {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,5 @@ public class User {
     private String name;
     
     private String email;
+    
 }
