@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.util.UUID;
 
 /**
@@ -25,4 +26,7 @@ public class User {
     private String name;
     
     private String email;
+    
+    @Column(name = "last_login")
+    private Date lastLogin;
 }

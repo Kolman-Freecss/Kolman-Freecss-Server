@@ -26,15 +26,20 @@ How to run the project:
 - Spring Data JPA Hibernate
   - Way to interact with the database using an ORM (Hibernate) with all the entities and relationships configured.
 - Spring Batch
-  - Batch processing.
+  - Batch processing. (Here is used as cleanup job scheduled to remove old data from the database with Tasklet).
 - Spring Actuator
   - You can check the health of the application in the following URL: `http://localhost:8080/actuator` or just `http://localhost:8080/actuator/health`
 - Springboot Webflux
   - Reactive programming. Async API to perform non-blocking operations in the main thread application.
+  - Used also to consume the Github API asynchrously (instead Java 11 HttpClient or OkHttp).
 - Spring Config
   - Centralized configuration.
 - Spring Data Redis (instead of Caffeine)
   - To cache data.
+- SpringBoot Config Processor
+  - To generate the configuration file. (Its a helper to generate the configuration file).
+- SpringBoot DevTools
+  - To reload the application when a change is detected.
 
 #### DDBB:
 

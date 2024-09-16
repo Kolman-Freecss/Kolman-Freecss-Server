@@ -2,7 +2,6 @@ package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.rest;
 
 import com.kolmanfreecss.kolmanfreecss.datagithub.application.service.GeneralGithubDataService;
 import com.kolmanfreecss.kolmanfreecss.datagithub.domain.dto.GithubDataDto;
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto.KafkaMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -33,6 +32,17 @@ public class GeneralGithubDataController {
         } catch (Exception e) {
             log.error("Error sending github data", e);
             return Mono.just("Error sending github data");
+        }
+    }
+    
+    @GetMapping("/basic-info")
+    public Mono<String> getBasicInfo() {
+        try {
+            return generalGithubDataService.getBasicInfo()
+                    .onErrorResume(e -> Mono.just("Error getting basic info"));
+        } catch (Exception e) {
+            log.error("Error getting basic info", e);
+            return Mono.just("Error getting basic info");
         }
     }
 

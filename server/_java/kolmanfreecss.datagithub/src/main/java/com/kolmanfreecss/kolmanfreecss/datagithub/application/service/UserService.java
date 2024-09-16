@@ -2,16 +2,15 @@ package com.kolmanfreecss.kolmanfreecss.datagithub.application.service;
 
 import com.kolmanfreecss.kolmanfreecss.datagithub.domain.dto.UserDto;
 import com.kolmanfreecss.kolmanfreecss.datagithub.domain.repository.hibernate.UserHibernateRepository;
-import com.kolmanfreecss.kolmanfreecss.datagithub.domain.repository.jdbc.UserRepository;
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.KafkaProducer;
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto.KafkaMessage;
+import com.kolmanfreecss.kolmanfreecss.datagithub.domain.repository.jdbc.UserJdbcRepository;
+import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka.KafkaProducer;
+import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka.dto.KafkaMessage;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -23,12 +22,12 @@ public class UserService {
 
     private final KafkaProducer kafkaProducer;
 
-    private final UserRepository jdbcUserRepository;
+    private final UserJdbcRepository jdbcUserRepository;
 
     private final UserHibernateRepository hibernateUserRepository;
 
     public UserService(final KafkaProducer kafkaProducer,
-                       final UserRepository userRepository,
+                       final UserJdbcRepository userRepository,
                        final UserHibernateRepository hibernateUserRepository) {
         this.kafkaProducer = kafkaProducer;
         this.jdbcUserRepository = userRepository;

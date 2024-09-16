@@ -1,4 +1,4 @@
-package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto;
+package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import java.sql.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,11 +18,11 @@ import java.util.UUID;
  * @version 1.0
  */
 @Repository
-public class UserRepository {
+public class UserJdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -33,7 +34,8 @@ public class UserRepository {
                                         (rs, rowNum) -> new User(
                                                 UUID.fromString(rs.getString("id")),
                                                 rs.getString("name"),
-                                                rs.getString("email"))
+                                                rs.getString("email"),
+                                                new Date(rs.getDate("created_at").getTime()))
                                 ).stream().findFirst()
                         )
                 )

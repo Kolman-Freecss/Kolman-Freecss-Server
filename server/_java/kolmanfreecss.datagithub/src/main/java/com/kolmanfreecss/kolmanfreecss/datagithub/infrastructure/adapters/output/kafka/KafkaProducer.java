@@ -1,8 +1,8 @@
-package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output;
+package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto.KafkaMessage;
+import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka.dto.KafkaMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
