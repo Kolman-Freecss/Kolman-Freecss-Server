@@ -1,1 +1,1 @@
-INSERT INTO app_user (name, email) VALUES ('Dummy', 'dummy@example.com');
+INSERT INTO app_user (name, email, last_login) VALUES ('Dummy', 'dummy@dummy.com', '2020-01-01 00:00:00');

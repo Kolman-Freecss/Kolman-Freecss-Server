@@ -1,6 +1,6 @@
-package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output;
+package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka;
 
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto.KafkaMessage;
+import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka.dto.KafkaMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;

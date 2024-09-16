@@ -2,7 +2,6 @@ package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.rest;
 
 import com.kolmanfreecss.kolmanfreecss.datagithub.application.service.GeneralGithubDataService;
 import com.kolmanfreecss.kolmanfreecss.datagithub.domain.dto.GithubDataDto;
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto.KafkaMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;

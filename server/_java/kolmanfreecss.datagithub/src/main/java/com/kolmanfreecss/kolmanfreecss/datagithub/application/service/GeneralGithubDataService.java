@@ -1,8 +1,8 @@
 package com.kolmanfreecss.kolmanfreecss.datagithub.application.service;
 
 import com.kolmanfreecss.kolmanfreecss.datagithub.domain.dto.GithubDataDto;
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.KafkaProducer;
-import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.dto.KafkaMessage;
+import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka.KafkaProducer;
+import com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.adapters.output.kafka.dto.KafkaMessage;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

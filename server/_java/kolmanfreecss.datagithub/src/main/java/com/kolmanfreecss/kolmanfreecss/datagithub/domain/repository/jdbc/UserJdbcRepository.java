@@ -17,11 +17,11 @@ import java.util.UUID;
  * @version 1.0
  */
 @Repository
-public class UserRepository {
+public class UserJdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

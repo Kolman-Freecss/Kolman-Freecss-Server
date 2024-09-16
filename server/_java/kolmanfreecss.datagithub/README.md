@@ -26,7 +26,7 @@ How to run the project:
 - Spring Data JPA Hibernate
   - Way to interact with the database using an ORM (Hibernate) with all the entities and relationships configured.
 - Spring Batch
-  - Batch processing.
+  - Batch processing. (Here is used as cleanup job scheduled to remove old data from the database with Tasklet).
 - Spring Actuator
   - You can check the health of the application in the following URL: `http://localhost:8080/actuator` or just `http://localhost:8080/actuator/health`
 - Springboot Webflux
