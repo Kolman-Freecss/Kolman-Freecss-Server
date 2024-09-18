@@ -31,6 +31,7 @@ How to run the project:
   - You can check the health of the application in the following URL: `http://localhost:8080/actuator` or just `http://localhost:8080/actuator/health`
 - Springboot Webflux
   - Reactive programming. Async API to perform non-blocking operations in the main thread application.
+  - Used also to consume the Github API asynchrously (instead Java 11 HttpClient or OkHttp).
 - Spring Config
   - Centralized configuration.
 - Spring Data Redis (instead of Caffeine)

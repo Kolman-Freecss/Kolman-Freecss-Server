@@ -34,5 +34,16 @@ public class GeneralGithubDataController {
             return Mono.just("Error sending github data");
         }
     }
+    
+    @GetMapping("/basic-info")
+    public Mono<String> getBasicInfo() {
+        try {
+            return generalGithubDataService.getBasicInfo()
+                    .onErrorResume(e -> Mono.just("Error getting basic info"));
+        } catch (Exception e) {
+            log.error("Error getting basic info", e);
+            return Mono.just("Error getting basic info");
+        }
+    }
 
 }
