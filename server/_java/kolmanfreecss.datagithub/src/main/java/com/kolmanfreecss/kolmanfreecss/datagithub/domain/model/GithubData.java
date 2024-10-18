@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 /**
  * @author Kolman-Freecss
  * @version 1.0
@@ -20,7 +18,7 @@ public class GithubData {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private long id;
     
     private String name;
     

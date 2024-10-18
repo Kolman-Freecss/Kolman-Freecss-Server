@@ -8,7 +8,6 @@ import reactor.core.scheduler.Schedulers;
 
 import java.sql.Date;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * JDBC Implementation
@@ -32,7 +31,7 @@ public class UserJdbcRepository {
                                 jdbcTemplate.query("SELECT * FROM app_user WHERE id = ?",
                                         ps -> ps.setString(1, userId),
                                         (rs, rowNum) -> new User(
-                                                UUID.fromString(rs.getString("id")),
+                                                rs.getLong("id"),
                                                 rs.getString("name"),
                                                 rs.getString("email"),
                                                 new Date(rs.getDate("created_at").getTime()))

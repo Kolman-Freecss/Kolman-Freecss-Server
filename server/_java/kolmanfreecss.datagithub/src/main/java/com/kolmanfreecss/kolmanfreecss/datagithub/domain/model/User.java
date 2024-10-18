@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.util.UUID;
 
 /**
  * @author Kolman-Freecss
@@ -21,7 +20,7 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private long id;
     
     private String name;
     

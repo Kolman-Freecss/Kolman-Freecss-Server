@@ -12,12 +12,10 @@ import spock.lang.Specification
  * @version 1.0
  * @author Kolman-Freecss
  */
-@JdbcTest
-// Used to test components that interact with the database
-@ContextConfiguration(classes = [UserCleanupServiceImpl])
-// Load the context with the service
-@Transactional
-// To roll back database operations after each test
+// JdbcTest is a specialized test slice that only loads the components needed to test JDBC code (more lightweight than @DataJdbcTest or @SpringBootTest)
+@JdbcTest // Used to test components that interact with the database
+@ContextConfiguration(classes = [UserCleanupServiceImpl]) // Load the context with the service
+@Transactional // To roll back database operations after each test
 class UserCleanupServiceImplIntegrationTest extends Specification {
 
     @Autowired

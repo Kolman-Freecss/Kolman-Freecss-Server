@@ -10,6 +10,7 @@ Service built to serve different data from Github.
   - [CI/CD](#cicd)
   - [DDBB](#ddbb)
   - [Testing](#testing)
+    - [Use](#use)
 - [Architecture](#architecture)
 - [Infrastructure](#infrastructure)
 - [Troubleshoting](#troubleshoting)
@@ -63,6 +64,17 @@ How to run the project:
 - Mockito
 - Groovy
 - Spock
+- Jacoco (Code coverage)
+  - To check the coverage of the tests.
+- WIP SonarQube
+  - To check the quality and coverage of the code.
+  - Set rules of % of coverage and quality of the code.
+
+#### Use
+
+- Run the tests with the following command:
+  - `./mvn clean test`
+  - This will run the tests and generate the coverage JaCoCo report in the `target` folder.
 
 
 #### DDBB:

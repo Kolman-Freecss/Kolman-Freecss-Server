@@ -3,10 +3,12 @@ package com.kolmanfreecss.kolmanfreecss.datagithub.application.service.jobs;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * @version 1.0
@@ -16,27 +18,24 @@ import org.springframework.context.annotation.Configuration;
 @EnableBatchProcessing
 public class CleanupJobConfig {
 
-    private final JobBuilderFactory jobBuilderFactory;
-    private final StepBuilderFactory stepBuilderFactory;
     private final CleanupTasklet cleanInactiveUsersTasklet;
 
-    public CleanupJobConfig(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory, CleanupTasklet cleanInactiveUsersTasklet) {
-        this.jobBuilderFactory = jobBuilderFactory;
-        this.stepBuilderFactory = stepBuilderFactory;
+    public CleanupJobConfig(CleanupTasklet cleanInactiveUsersTasklet) {
         this.cleanInactiveUsersTasklet = cleanInactiveUsersTasklet;
     }
 
     @Bean
-    public Job cleanInactiveUsersJob() {
-        return jobBuilderFactory.get("cleanInactiveUsersJob")
-            .start(cleanInactiveUsersStep())
-            .build();
+    public Job cleanInactiveUsersJob(final JobRepository jobRepository, final Step cleanInactiveUsersStep) {
+        return new JobBuilder("cleanInactiveUsersJob", jobRepository)
+                .start(cleanInactiveUsersStep)
+                .build();
     }
 
     @Bean
-    public Step cleanInactiveUsersStep() {
-        return stepBuilderFactory.get("cleanInactiveUsersStep")
-            .tasklet(cleanInactiveUsersTasklet)
-            .build();
+    public Step cleanInactiveUsersStep(final JobRepository jobRepository, final PlatformTransactionManager transactionManager) {
+        return new StepBuilder("cleanInactiveUsersStep", jobRepository)
+                .tasklet(cleanInactiveUsersTasklet, transactionManager)
+                .build();
     }
+
 }
