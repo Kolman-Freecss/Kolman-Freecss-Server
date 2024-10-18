@@ -6,6 +6,10 @@ Service built to serve different data from Github.
 
 - [Getting Started](#getting-started)
 - [Tech stacks](#tech-stacks)
+  - [General](#general) 
+  - [CI/CD](#cicd)
+  - [DDBB](#ddbb)
+  - [Testing](#testing)
 - [Architecture](#architecture)
 - [Infrastructure](#infrastructure)
 - [Troubleshoting](#troubleshoting)
@@ -19,14 +23,10 @@ How to run the project:
 
 ## Tech stacks
 
+### General
+
 - Java 22
 - Springboot 3
-- Spring Data JDBC
-  - Way to interact with the database without the need of an ORM. Performance is better than JPA Hibernate.
-- Spring Data JPA Hibernate
-  - Way to interact with the database using an ORM (Hibernate) with all the entities and relationships configured.
-- Spring Batch
-  - Batch processing. (Here is used as cleanup job scheduled to remove old data from the database with Tasklet).
 - Spring Actuator
   - You can check the health of the application in the following URL: `http://localhost:8080/actuator` or just `http://localhost:8080/actuator/health`
 - Springboot Webflux
@@ -34,12 +34,36 @@ How to run the project:
   - Used also to consume the Github API asynchrously (instead Java 11 HttpClient or OkHttp).
 - Spring Config
   - Centralized configuration.
-- Spring Data Redis (instead of Caffeine)
-  - To cache data.
 - SpringBoot Config Processor
   - To generate the configuration file. (Its a helper to generate the configuration file).
 - SpringBoot DevTools
   - To reload the application when a change is detected.
+
+### CI/CD
+
+- Github Actions
+  - To build the application and run the tests.
+  - To deploy the application to the Docker Hub.
+- Docker
+
+### DDBB
+
+- Spring Data JDBC
+  - Way to interact with the database without the need of an ORM. Performance is better than JPA Hibernate.
+- Spring Data JPA Hibernate
+  - Way to interact with the database using an ORM (Hibernate) with all the entities and relationships configured.
+- Spring Batch
+  - Batch processing. (Here is used as cleanup job scheduled to remove old data from the database with Tasklet).
+- Spring Data Redis (instead of Caffeine)
+  - To cache data.
+
+### Testing
+
+- JUnit 5
+- Mockito
+- Groovy
+- Spock
+
 
 #### DDBB:
 

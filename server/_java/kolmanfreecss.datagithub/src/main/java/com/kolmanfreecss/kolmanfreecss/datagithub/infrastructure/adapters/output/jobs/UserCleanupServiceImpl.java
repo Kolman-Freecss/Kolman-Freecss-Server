@@ -12,17 +12,18 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class UserCleanupServiceImpl implements UserCleanupService {
-    
+
     private final JdbcTemplate jdbcTemplate;
-    
+
     public UserCleanupServiceImpl(final JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    
+
     @Override
     public void cleanupInactiveUsers() {
-        final String sql = "DELETE FROM users WHERE last_login < NOW() - INTERVAL '1 year'";
+        final String sql = "DELETE FROM app_user WHERE last_login < DATEADD('YEAR', -1, NOW())";
         final int rowsAffected = jdbcTemplate.update(sql);
         log.info("Deleted {} inactive users", rowsAffected);
     }
+
 }
