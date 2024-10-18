@@ -2,6 +2,8 @@ package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.rest;
 
 import com.kolmanfreecss.kolmanfreecss.datagithub.application.service.UserService;
 import com.kolmanfreecss.kolmanfreecss.datagithub.domain.dto.UserDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -23,6 +25,9 @@ public class UserController {
         this.userService = userService;
     }
     
+    @Operation(summary = "Find all users", description = "Find all users")
+    @ApiResponse(responseCode = "200", description = "Users found")
+    @ApiResponse(responseCode = "500", description = "Error finding users")
     @GetMapping("/")
     public Mono<List<String>> findAllUsers() {
         try {
@@ -37,6 +42,9 @@ public class UserController {
         }
     }
     
+    @Operation(summary = "Save user", description = "Save user by userDto")
+    @ApiResponse(responseCode = "200", description = "User saved successfully")
+    @ApiResponse(responseCode = "500", description = "Error saving user")
     @PostMapping("/")
     public Mono<String> saveUser(final @RequestBody UserDto userDto) {
         try {
@@ -49,6 +57,9 @@ public class UserController {
         }
     }
     
+    @Operation(summary = "Find user by id", description = "Find user by the given userId")
+    @ApiResponse(responseCode = "200", description = "User found")
+    @ApiResponse(responseCode = "500", description = "Error finding user")
     @GetMapping("/user/{userId}")
     public Mono<String> findUserById(final @PathVariable String userId) {
         try {

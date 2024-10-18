@@ -2,6 +2,8 @@ package com.kolmanfreecss.kolmanfreecss.datagithub.infrastructure.rest;
 
 import com.kolmanfreecss.kolmanfreecss.datagithub.application.service.GeneralGithubDataService;
 import com.kolmanfreecss.kolmanfreecss.datagithub.domain.dto.GithubDataDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -23,6 +25,9 @@ public class GeneralGithubDataController {
         this.generalGithubDataService = generalGithubDataService;
     }
     
+    @Operation(summary = "Send github data", description = "Send github data")
+    @ApiResponse(responseCode = "200", description = "Github data sent successfully")
+    @ApiResponse(responseCode = "500", description = "Error sending github data")
     @PostMapping("/send")
     public Mono<String> sendGithubData(final @RequestBody List<GithubDataDto> githubData) {
         try {
@@ -35,6 +40,9 @@ public class GeneralGithubDataController {
         }
     }
     
+    @Operation(summary = "Get basic info", description = "Get basic info")
+    @ApiResponse(responseCode = "200", description = "Basic info found")
+    @ApiResponse(responseCode = "500", description = "Error getting basic info")
     @GetMapping("/basic-info")
     public Mono<String> getBasicInfo() {
         try {

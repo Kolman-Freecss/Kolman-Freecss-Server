@@ -27,6 +27,10 @@ How to run the project:
 ### General
 
 - Java 22
+- Spring AOP
+  - Auxiliar Join Components to log the requests and responses.
+- OpenAPI/Swagger docs v2
+  - To document the API. 
 - Springboot 3
 - Spring Actuator
   - You can check the health of the application in the following URL: `http://localhost:8080/actuator` or just `http://localhost:8080/actuator/health`
